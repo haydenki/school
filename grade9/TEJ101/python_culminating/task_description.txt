@@ -1,0 +1,39 @@
+Background:
+
+Every municipality (city/town/village/county) in the province has rules about what size house can be built on a piece of land.  Land developers and home builders always try to maximize the size of the house (in square metres) on a residential lot.
+
+For the town in which our developer friends are looking at redeveloping residential lots, the zoning rules are:
+
+    minimum lot area is 836.0 m2
+    minimum lot frontage (width of lot at the road) is 22.5 m
+    maximum lot coverage is 30% (the house can only cover this much of the entire lot)
+    maximum floor area is 38% of the lot area (total floor area includes all the levels in the house, except the basement and attached garage)
+
+For these reasons, the developers have decided to only look at purchasing lots that will allow them to build a minimum of 978 m2 (total floor area) house.
+
+Assignment:
+
+Prepare a program that the developer can use to help make a decision about the purchase of any lot.  The program will ask for the lot dimensions as input, and output the statistics of the lot (area, frontage, lot coverage, floor area) and whether the lot is acceptable, or not.
+
+As a class, we will go through the first few parts of the software design life cycle (SDLC)/problem-solving process, which will provide you with a plan to follow to write the code.
+
+SDLC/Problem-solving process:
+
+    1.Problem statement
+        1.summarize the problem in one sentence
+    2.Solution requirements
+        1.what must be included in the solution, based on the information provided
+    3.Solution limitations (optional)
+        1.assumptions that limit the scope of the solution (this is how you make money as a consultant)
+    4.Brainstorming
+        1.come up with as many solutions as you, or your group, can think of
+        2.evaluate the solutions and choose the best one
+            1.most people do this automatically (it's called 'common sense')
+            2.in industry, there is actually a specific way to do this using statistics and computer modeling - this is a big part of an engineering career.
+    5.Implementation (coding)
+        1.Now you can code
+    6.Testing
+        1.try to break your code (alpha test)
+        2.let someone else try to break your code (beta test)
+    7.Revise/re-engineer
+        1.based on your testing, go back to step 1.
