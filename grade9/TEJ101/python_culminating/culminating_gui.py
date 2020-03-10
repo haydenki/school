@@ -1,6 +1,8 @@
 # Python Culminating task, rewritten for a GUI
 # Written by haydenki
+# Written for python2.7
 
+# This program does the same thing as culminating.py, but is rewritten to be a GUI project.
 
 import pygtk
 pygtk.require('2.0')
@@ -21,38 +23,108 @@ class text_box:
 
     def submit(self, button):
         try:
+	    # Get dismensions as text inputs and convert them to float
             lot_width = self.entry.get_text()
             lot_height = self.entry2.get_text()
-            
-            lot_area = lot_width) * lot_height
+            lot_width = float(lot_width)
+	    lot_height = float(lot_height)
+
+	    # Calculate lot statistics
+            lot_area = lot_width * lot_height
             lot_frontage = lot_width
-            lot_coverage = (lot_area / 836.0) * 100
+            lot_coverage = (978.0 / lot_area) * 100
             
-            self.md = gtk.MessageDialog(None, gtk.DIALOG_DESTROY_WITH_PARENT, gtk.MESSAGE_ERROR, gtk.BUTTONS_CLOSE, "This is not a number")
+            # Print dismensions in console and generate display string for message box
+     	    print("Width: ", lot_width)
+            print("Height: ", lot_height)
+            display_string = "Area: " + str(lot_area) + "\nFrontage: " +  str(lot_frontage) + "\nCoverage:" + str(lot_coverage)
+
+	    # Compare lot statistics with minimum requirements, then tell the user if the lot is acceptable to buy
+	    if(lot_area < 836.0): 
+		message_type = gtk.MESSAGE_ERROR
+	        display_string = "Area: " + str(lot_area) + "\nFrontage: " +  str(lot_frontage) + "\nCoverage:" + str(lot_coverage) + "\n\nWe have determined you: **cannot** buy this lot\n(Area too small)"
+            elif(lot_frontage < 22.5):
+                message_type = gtk.MESSAGE_ERROR
+	        display_string = "Area: " + str(lot_area) + "\nFrontage: " +  str(lot_frontage) + "\nCoverage:" + str(lot_coverage) + "\n\nWe have determined you: **cannot** buy this lot\n(Frontage not wide enough)"
+            elif(lot_coverage > 30.0000):
+                message_type = gtk.MESSAGE_ERROR
+	        display_string = "Area: " + str(lot_area) + "\nFrontage: " +  str(lot_frontage) + "\nCoverage:" + str(lot_coverage) + "\n\nWe have determined you: **cannot** buy this lot\n(Lot coverage over 30%)"
+            else:
+		message_type = gtk.MESSAGE_INFO
+		display_string = "Area: " + str(lot_area) + "\nFrontage: " +  str(lot_frontage) + "\nCoverage:" + str(lot_coverage) + "\n\nWe have determined you: **can** buy this lot :-)"
+                
+
+            self.md = gtk.MessageDialog(None, gtk.DIALOG_DESTROY_WITH_PARENT, message_type, gtk.BUTTONS_CLOSE, display_string)
             self.md.set_position(gtk.WIN_POS_CENTER)
             self.md.run()
             self.md.destroy()
-            
             return 1
         except ValueError:
+	    # Raised when user inputs an incorrect input type
             print("This is not a number...")
-            self.md = gtk.MessageDialog(None, gtk.DIALOG_DESTROY_WITH_PARENT, gtk.MESSAGE_ERROR, gtk.BUTTONS_CLOSE, "This is not a number")
+            self.md = gtk.MessageDialog(None, gtk.DIALOG_DESTROY_WITH_PARENT, gtk.MESSAGE_ERROR, gtk.BUTTONS_CLOSE, "This is not a number...")
             self.md.set_position(gtk.WIN_POS_CENTER)
             self.md.run()
             self.md.destroy()
+        except:
+	    self.md = gtk.MessageDialog(None, gtk.DIALOG_DESTROY_WITH_PARENT, message_type, gtk.BUTTONS_CLOSE, "Error")
+            self.md.set_position(gtk.WIN_POS_CENTER)
+            self.md.run()
+            self.md.destroy()
+	
+  
 
 
     def enter(self, button):
         try:
-            input = self.entry.get_text()
-            input = float(input)
-            print(input)
-            return input
-        except ValueError:
-            self.md = gtk.MessageDialog(None, gtk.DIALOG_DESTROY_WITH_PARENT, gtk.MESSAGE_ERROR, gtk.BUTTONS_CLOSE, "This is not a number")
+	    # Get dismensions as text inputs and convert them to float
+            lot_width = self.entry.get_text()
+            lot_height = self.entry2.get_text()
+            lot_width = float(lot_width)
+	    lot_height = float(lot_height)
+
+	    # Calculate lot statistics
+            lot_area = lot_width * lot_height
+            lot_frontage = lot_width
+            lot_coverage = (lot_area / 836.0) * 100
+            
+            # Print dismensions in console and generate display string for message box
+     	    print("Width: ", lot_width)
+            print("Height: ", lot_height)
+            display_string = "Area: " + str(lot_area) + "\nFrontage: " +  str(lot_frontage) + "\nCoverage:" + str(lot_coverage)
+
+	    # Compare lot statistics with minimum requirements, then tell the user if the lot is acceptable to buy
+	    if(lot_area < 836.0): 
+		message_type = gtk.MESSAGE_ERROR
+	        display_string = "Area: " + str(lot_area) + "m2\nFrontage: " +  str(lot_frontage) + "m\nCoverage:" + str(lot_coverage) + "m2\n\nWe have determined you: **cannot** buy this lot\n(Area too small)"
+            elif(lot_frontage < 22.5):
+                message_type = gtk.MESSAGE_ERROR
+	        display_string = "Area: " + str(lot_area) + "m2\nFrontage: " +  str(lot_frontage) + "m\nCoverage:" + str(lot_coverage) + "m2\n\nWe have determined you: **cannot** buy this lot\n(Frontage not wide enough)"
+            elif(lot_coverage > 30.0000):
+                message_type = gtk.MESSAGE_ERROR
+	        display_string = "Area: " + str(lot_area) + "m2\nFrontage: " +  str(lot_frontage) + "m\nCoverage:" + str(lot_coverage) + "m2\n\nWe have determined you: **cannot** buy this lot\n(Lot coverage over 30%)"
+            else:
+		display_string = "Area: " + str(lot_area) + "m2\nFrontage: " +  str(lot_frontage) + "m\nCoverage:" + str(lot_coverage) + "m2\n\nWe have determined you: **can** buy this lot :-)"
+                
+
+            self.md = gtk.MessageDialog(None, gtk.DIALOG_DESTROY_WITH_PARENT, message_type, gtk.BUTTONS_CLOSE, display_string)
+            self.md.set_position(gtk.WIN_POS_CENTER)
             self.md.run()
             self.md.destroy()
+            return 1
+        except ValueError:
+	    # Raised when user inputs an incorrect input type
             print("This is not a number...")
+            self.md = gtk.MessageDialog(None, gtk.DIALOG_DESTROY_WITH_PARENT, gtk.MESSAGE_ERROR, gtk.BUTTONS_CLOSE, "This is not a number...")
+            self.md.set_position(gtk.WIN_POS_CENTER)
+            self.md.run()
+            self.md.destroy()
+        except:
+	    self.md = gtk.MessageDialog(None, gtk.DIALOG_DESTROY_WITH_PARENT, message_type, gtk.BUTTONS_CLOSE, "Error")
+            self.md.set_position(gtk.WIN_POS_CENTER)
+            self.md.run()
+            self.md.destroy()
+	
 
 
 
@@ -93,7 +165,7 @@ class text_box:
 
         #Make entry boxes for lot dismensions
         self.entry = gtk.Entry()
-        self.label = gtk.Label("Width")
+        self.label = gtk.Label("Width(m)")
         vbox.pack_start(self.label, False, False, 0)
         self.label.show()
         self.entry.set_max_length(20)
@@ -105,7 +177,7 @@ class text_box:
 
         
         self.entry2 = gtk.Entry()
-        self.label = gtk.Label("Height")
+        self.label = gtk.Label("Depth(m)")
         vbox.pack_start(self.label, False, False, 0)
         self.label.show()
         self.entry2.set_max_length(20)
@@ -114,7 +186,10 @@ class text_box:
         vbox.pack_start(self.entry2, False, False, 0)
         self.entry2.show()
         vbox.pack_start(self.button, False, False, 00)
+        self.label = gtk.Label("(written by Hayden.K)") # Copyright
+	vbox.pack_start(self.label, False, False, 0)
         self.button.show()
+	self.label.show()
         #And the window
         self.window.show()
 
