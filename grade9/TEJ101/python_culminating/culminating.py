@@ -27,5 +27,3 @@ def get_lot():
 
 while(True): #So I don't have to restart the program every time I want to test different inputs
     get_lot()
-
-
